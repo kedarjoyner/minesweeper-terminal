@@ -1,20 +1,17 @@
-let board = [
-    [' ', ' ', ' '], 
-    [' ', ' ', ' '], 
-    [' ', ' ', ' ']
-];
+const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
 
-const printBoard = board => {
-    console.log('Current Board:');    
-    console.log(board[0].join(' | '));
-    console.log(board[1].join(' | '));
-    console.log(board[2].join(' | '));
+    let board = [];
+
+    for (let rowCounter = 0; rowCounter < numberOfRows; rowCounter++) {
+
+        let row = [];
+
+        for(let columnCounter = 0; columnCounter < numberOfColumns; columnCounter++ ) {
+
+            row.push(' ');
+        }
+        board.push(row);
+    }
     
+    return board;
 };
-
-printBoard(board);
-
-board[0][1] = '1';
-board[2][2] = 'B';
-
-printBoard(board);
