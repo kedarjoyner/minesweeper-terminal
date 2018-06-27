@@ -45,11 +45,16 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs ) => {
         // Generate a random column index
         let randomColumnIndex = Math.floor(Math.random() * numberOfColumns);
 
-        // Place bomb at random column and row indexes
-        board[randomRowIndex][randomColumnIndex] = 'B';
+        // Check if bomb already exists
+        if ( board[randomRowIndex][randomColumnIndex] !== 'B' ) {
 
-        // Increment numberOfBombsPlace
-        numberOfBombsPlaced++;
+            // Place bomb if one doesn't already exist
+            board[randomRowIndex][randomColumnIndex] = 'B';
+            
+            // Increment numberOfBombsPlace
+            numberOfBombsPlaced++;
+        } 
+
 
         // Add control flow to eliminate placing bombs over existing bombs
     }
