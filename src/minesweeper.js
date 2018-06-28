@@ -50,7 +50,7 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs ) => {
 
             // Place bomb if one doesn't already exist
             board[randomRowIndex][randomColumnIndex] = 'B';
-            
+
             // Increment numberOfBombsPlace
             numberOfBombsPlaced++;
         } 
@@ -61,6 +61,38 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs ) => {
   
     return board;
 };
+
+const getNumberOfNeighborBomb = (bombBoard, rowIndex, columnIndex) => {
+
+    // All possible adjacent options to a flipped tile
+    const neighborOffsets = [
+        [-1, -1], 
+        [-1, 0],
+        [-1, 1],
+        [0, -1],
+        [0, 1],
+        [1, -1],
+        [1, 0],
+        [1, 1]
+    ];
+
+    // The first element is a row
+    const numberOfRows = bombBoard.length;
+
+    // The number of entries in a row represents the total number of columns
+
+    const numberOfColumns = bomBoard[0].length;
+
+    // Stores the number of bombs adjacent to a flipped tile
+    let numberOfBombs = 0;
+
+    neighborOffsets.forEach( offset => {
+        
+    });
+
+
+
+}
 
 
 
@@ -81,3 +113,4 @@ printBoard(playerBoard);
 console.log('Bomb Board: ');
 
 printBoard(bombBoard);
+
