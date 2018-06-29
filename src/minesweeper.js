@@ -76,11 +76,11 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
         [1, 1]
     ];
 
-    // The first element is a row
+    // Finds the number of rows on the bomboard
     const numberOfRows = bombBoard.length;
 
-    // The number of entries in a row represents the total number of columns
-     const numberOfColumns = bombBoard[0].length;
+    // Finds the number of columns in a row
+    const numberOfColumns = bombBoard[0].length;
 
     // Stores the number of bombs adjacent to a flipped tile
     let numberOfBombs = 0;
@@ -92,19 +92,42 @@ const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
         const neighborRowIndex = rowIndex + offset[0];
         const neighborColumnIndex = columnIndex + offset[1];
 
-        if ( neighborRowIndex >= 0  && neighborRowIndex < rowIndex && 
-            neighborColumnIndex >= 0 && neighborColumnIndex <= columnIndex ) {
+        if ( neighborRowIndex >= 0  && neighborRowIndex < numberOfRows && 
+            neighborColumnIndex >= 0 && neighborColumnIndex < numberOfColumns ) {
             if ( bombBoard[neighborRowIndex][neighborColumnIndex] === 'B' ) {
                 numberOfBombs++;
             }
         } 
+console.log(neighborRowIndex, neighborColumnIndex );
 
     });
+
+    // let playerBoard = generatePlayerBoard(3, 3);
+
+    // let bombBoard = generateBombBoard(3, 3, 6);
+
+    // getNumberOfNeighborBombs(bombBoard, 3, 1);
     
     console.log(`I found ${numberOfBombs} bombs`);
+  
     return numberOfBombs;
 
 };
+
+const flipTile = (playerBoard, bombBoard, rowIndex, columnIndex) => {
+
+    // check if specified tile in playerBoard is not empty
+
+    if (playerBoard[rowIndex][columnIndex] != ' ')  {
+        console.log('This tile has already been flipped!');
+        return;
+    } else if(bombBoard[rowIndex][columnIndex] === 'B') {
+        playerBoard[rowIndex][columnIndex] = 'B';
+    } else {
+
+    } 
+
+}
 
 
 // iterate through each board row
