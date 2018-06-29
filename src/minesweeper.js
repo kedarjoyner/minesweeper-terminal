@@ -62,7 +62,7 @@ const generateBombBoard = (numberOfRows, numberOfColumns, numberOfBombs ) => {
     return board;
 };
 
-const getNumberOfNeighborBomb = (bombBoard, rowIndex, columnIndex) => {
+const getNumberOfNeighborBombs = (bombBoard, rowIndex, columnIndex) => {
 
     // All possible adjacent options to a flipped tile
     const neighborOffsets = [
@@ -80,20 +80,31 @@ const getNumberOfNeighborBomb = (bombBoard, rowIndex, columnIndex) => {
     const numberOfRows = bombBoard.length;
 
     // The number of entries in a row represents the total number of columns
-
-    const numberOfColumns = bomBoard[0].length;
+     const numberOfColumns = bombBoard[0].length;
 
     // Stores the number of bombs adjacent to a flipped tile
     let numberOfBombs = 0;
 
+    // Use the row and column offsets to check the neighbors around a flipped tile
     neighborOffsets.forEach( offset => {
-        
+
+
+        const neighborRowIndex = rowIndex + offset[0];
+        const neighborColumnIndex = columnIndex + offset[1];
+
+        if ( neighborRowIndex >= 0  && neighborRowIndex < rowIndex && 
+            neighborColumnIndex >= 0 && neighborColumnIndex <= columnIndex ) {
+            if ( bombBoard[neighborRowIndex][neighborColumnIndex] === 'B' ) {
+                numberOfBombs++;
+            }
+        } 
+
     });
+    
+    console.log(`I found ${numberOfBombs} bombs`);
+    return numberOfBombs;
 
-
-
-}
-
+};
 
 
 // iterate through each board row
@@ -103,8 +114,12 @@ const printBoard = board => {
     console.log(board.map(row => row.join(' | ')).join('\n'));
 };
 
-let playerBoard = generatePlayerBoard(3, 4);
-let bombBoard = generateBombBoard(3, 4, 5);
+let playerBoard = generatePlayerBoard(3, 3);
+
+let bombBoard = generateBombBoard(3, 3, 6);
+
+getNumberOfNeighborBombs(bombBoard, 3, 1);
+
 
 console.log('Player Board: ');
 
