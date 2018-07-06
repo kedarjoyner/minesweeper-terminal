@@ -1,29 +1,8 @@
-class Game {
-    constructor(numberOfRows, numberOfColumns, numberOfBombs) {
-        this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
-
-    }
-    playMove(rowIndex, columnIndex){
-
-        this._board.flipTile(rowIndex, columnIndex);
-        
-        // if bomb at flip location, player loses
-        if (this._board.playerBoard[rowIndex][columnIndex] === 'B') {
-            console.log('Game is over! Final Board:');
-            this._board.print()
-
-        // if no bombs left and player still safe, player wins
-         } else if (!this._board.hasSafeTiles()) {        
-            console.log('You won!');
-         // if no bombs and game not over, print board to continue   
-         } else {
-             console.log('Current Board: ');
-             this._board.print();
-
-         }
-    }
-}
-
+/*
+* This module contains the Board class
+* which contains all of the functional logic 
+* necessary to play the minesweeper game
+*/
 
 class Board {
 
@@ -107,7 +86,7 @@ class Board {
     // join all rows together with enter separator
     print() {
         console.log(this._playerBoard.map(row => row.join(' | ')).join('\n'));
-        console.log(this._bombBoard.map(row => row.join(' | ')).join('\n'));
+        //console.log(this._bombBoard.map(row => row.join(' | ')).join('\n'));
     }
 
     // Dynamically generate player board
@@ -170,5 +149,4 @@ class Board {
     }
 }
 
-const g = new Game(3, 3, 3);
-g.playMove(0,0);
+export default Board;
